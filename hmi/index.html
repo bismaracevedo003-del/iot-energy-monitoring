@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT Energy Monitoring</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>IoT Energy Monitoring</h1>
+    <p>Edge gateway · MQTT-style telemetry · Tariff and anomaly analytics</p>
+  </header>
+  <main>
+    <section class="panel wide">
+      <div class="kpis">
+        <div><span>Demand</span><strong id="demand">0.0</strong><small>kW</small></div>
+        <div><span>Energy</span><strong id="energy">0.0</strong><small>kWh</small></div>
+        <div><span>Cost</span><strong id="cost">0.0</strong><small>USD</small></div>
+        <div><span>CO₂</span><strong id="co2">0.0</strong><small>kg</small></div>
+        <div><span>Peak</span><strong id="peak">0.0</strong><small>kW</small></div>
+        <div><span>Anomalies</span><strong id="anomalies">0</strong><small>events</small></div>
+      </div>
+      <div class="tariff" id="tariff">OFF-PEAK</div>
+      <canvas id="chart" width="900" height="220"></canvas>
+    </section>
+    <section class="panel">
+      <h2>Meters</h2>
+      <table><thead><tr><th>Meter</th><th>kW</th><th>V</th><th>PF</th><th>Event</th></tr></thead><tbody id="meters"></tbody></table>
+    </section>
+    <section class="panel">
+      <h2>Recent events</h2>
+      <ul id="events" class="events"></ul>
+    </section>
+    <section class="panel">
+      <h2>Broker</h2>
+      <p><span id="messages">0</span> messages · <span id="topics">0</span> topics</p>
+      <div id="topicList" class="topics"></div>
+      <h2>Anomaly injection</h2>
+      <div class="row">
+        <button data-inject="spike">Demand spike</button>
+        <button data-inject="sag">Voltage sag</button>
+        <button data-inject="pf">Low PF</button>
+        <button data-inject="freq">Freq drift</button>
+        <button id="clear">Clear</button>
+        <button id="reset">Reset</button>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
